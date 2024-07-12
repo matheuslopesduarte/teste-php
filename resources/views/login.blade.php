@@ -8,13 +8,13 @@
     <title>Login</title>
 </head>
 <body>
-    <form method="POST" action="{{ route('login.submit') }}">
+    <form method="POST" action="/login">
         @csrf
 
         <div>
             <label for="email">E-mail</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
-            @error('email')
+            <input id="email" type="email" name="identifier" value="{{ old('email') }}" required autofocus>
+            @error('identifier')
                 <span>{{ $message }}</span>
             @enderror
         </div>

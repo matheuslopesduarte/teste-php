@@ -22,7 +22,6 @@ class Usuario extends Model
         'cpf',
         'username',
         'misc',
-        'UserKeys',
         'birthdate'
     ];
 

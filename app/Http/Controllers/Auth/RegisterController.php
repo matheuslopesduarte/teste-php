@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
 use Carbon\Carbon;
 
@@ -48,13 +47,15 @@ class RegisterController extends Controller
                 'expires_at' => Carbon::now()->addHours(24)->toDateTimeString()
             ],
         ];
+        $usuario->id = uniqid();
         $usuario->misc = json_encode($misc);
 
-        $usuario->name = $request->name;
+        $usuario->nome = $request->name;
         $usuario->email = $request->email;
         $usuario->cpf = $request->cpf;
         $usuario->username = $request->username;
-        $usuario->password = bcrypt($request->password);
+        $usuario->senha = hash('sha256', $request->password);
+        $usuario->birthdate = $birthdate->toDateString();
         $usuario->save();
 
         return redirect()->route('login');

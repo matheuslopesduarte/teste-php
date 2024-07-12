@@ -5,6 +5,14 @@
 @section('title', 'Welcome')
 
 @section('content')
-    <h1>Welcome to My Website</h1>
-    <p>This is the home page content.</p>
+    <?php 
+    $session = session('user');
+
+    if ($session) {
+        echo "<h1>Welcome, $session->username</h1>";
+        echo "<a href='/logout'>Logout</a>";
+    } else {
+        echo "<a href='/login'>Login</a>";
+    }
+    ?>
 @endsection

@@ -4,10 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
-
 
 class LoginController extends Controller
 {
@@ -29,7 +26,7 @@ class LoginController extends Controller
                             ->orWhere('username', $request->identifier)
                             ->first();
 
-        if($usuario && Hash::check($request->password, $usuario->password)){
+        if($usuario && hash('sha256', $request->password) == $usuario->senha){
 
             session(['user' => $usuario]);
             return redirect()->intended('dashboard');

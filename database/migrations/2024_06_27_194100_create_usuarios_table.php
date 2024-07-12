@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('cpf', 11)->unique();
             $table->string('username', 30)->unique();
             $table->json('misc')->nullable();
-            $table->json('UserKeys');
             $table->date('birthdate');
             $table->timestamps(); // Adiciona created_at e updated_at
         });
