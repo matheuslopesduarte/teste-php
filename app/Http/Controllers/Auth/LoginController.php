@@ -29,7 +29,7 @@ class LoginController extends Controller
         if($usuario && hash('sha256', $request->password) == $usuario->senha){
 
             session(['user' => $usuario]);
-            return redirect()->intended('dashboard');
+            return redirect()->route('home');
         } else {
             return back()->withErrors(['identifier' => 'Usuário ou senha inválidos']);
         }
@@ -38,6 +38,6 @@ class LoginController extends Controller
     public function logout()
     {
         session()->forget('user');
-        return redirect()->intended('dashboard');
+        return redirect()->route('home');
     }
 }
